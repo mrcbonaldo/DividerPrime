@@ -1,6 +1,4 @@
-using Application.Interfaces;
 using Application.Services;
-using Moq;
 using System.Collections.Generic;
 using Xunit;
 
@@ -9,23 +7,21 @@ namespace TestProject
     public class DividerNumbersTest
     {
         [Fact]
-        public void CommandIsValid_GetDividers_Success()
+        public void CommandIsValid_GetDividers_Success_Equal_NotNull_NotEmpty()
         {
             // Arrange
             var dividersMock = new List<int>() { 1, 3, 5, 9, 15, 45 };
-
-            var mock = new Mock<ICalculateServices>();
-            mock.Setup(c => c.GetDividerNumbers(It.IsAny<int>())).Returns(dividersMock);
+            var number = 45;
 
             CalculateServices calculateServices = new CalculateServices();
 
             // Act
-            var number = 45;
             var result = calculateServices.GetDividerNumbers(number);
 
             // Assert
             Assert.Equal(dividersMock, result);
             Assert.NotNull(result);
+            Assert.NotEmpty(result);
         }
 
         [Fact]
@@ -33,9 +29,6 @@ namespace TestProject
         {
             // Arrange
             var dividersMock = new List<int>() { 3, 5, 9, 15, 45 };
-
-            var mock = new Mock<ICalculateServices>();
-            mock.Setup(c => c.GetDividerNumbers(It.IsAny<int>())).Returns(dividersMock);
 
             CalculateServices calculateServices = new CalculateServices();
 
@@ -48,14 +41,11 @@ namespace TestProject
         }
 
         [Fact]
-        public void CommandIsValid_GetPrimes_Success()
+        public void CommandIsValid_GetPrimes_Success_Equal()
         {
             // Arrange
             var dividers = new[] { 1, 3, 5, 9, 15, 45 };
             var primes = new[] { 3, 5 };
-
-            var mock = new Mock<ICalculateServices>();
-            mock.Setup(c => c.GetPrimeNumbers(It.IsAny<IEnumerable<int>>())).Returns(dividers);
 
             CalculateServices calculateServices = new CalculateServices();
 
@@ -67,14 +57,11 @@ namespace TestProject
         }
 
         [Fact]
-        public void CommandIsValid_GetPrimes_Error_NotEquals()
+        public void CommandIsValid_GetPrimes_Error_NotEqual()
         {
             // Arrange
             var dividers = new[] { 1, 3, 5, 9, 15, 45 };
             var primes = new[] { 2, 3, 5 };
-
-            var mock = new Mock<ICalculateServices>();
-            mock.Setup(c => c.GetPrimeNumbers(It.IsAny<IEnumerable<int>>())).Returns(dividers);
 
             CalculateServices calculateServices = new CalculateServices();
 
@@ -86,13 +73,10 @@ namespace TestProject
         }
 
         [Fact]
-        public void CommandIsValid_GetPrimes_Error_Null()
+        public void CommandIsValid_GetPrimes_Error_Empty()
         {
             // Arrange
             var dividers = new[] { 9, 45 };
-
-            var mock = new Mock<ICalculateServices>();
-            mock.Setup(c => c.GetPrimeNumbers(It.IsAny<IEnumerable<int>>())).Returns(dividers);
 
             CalculateServices calculateServices = new CalculateServices();
 
