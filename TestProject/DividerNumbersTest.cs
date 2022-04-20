@@ -6,14 +6,19 @@ namespace TestProject
 {
     public class DividerNumbersTest
     {
+        private readonly CalculateServices calculateServices;
+
+        public DividerNumbersTest()
+        {
+            calculateServices = new CalculateServices();
+        }
+
         [Fact]
         public void CommandIsValid_GetDividers_Success_Equal_NotNull_NotEmpty()
         {
             // Arrange
             var dividersMock = new List<int>() { 1, 3, 5, 9, 15, 45 };
             var number = 45;
-
-            CalculateServices calculateServices = new CalculateServices();
 
             // Act
             var result = calculateServices.GetDividerNumbers(number);
@@ -30,8 +35,6 @@ namespace TestProject
             // Arrange
             var dividersMock = new List<int>() { 3, 5, 9, 15, 45 };
 
-            CalculateServices calculateServices = new CalculateServices();
-
             // Act
             var number = 45;
             var result = calculateServices.GetDividerNumbers(number);
@@ -47,8 +50,6 @@ namespace TestProject
             var dividers = new[] { 1, 3, 5, 9, 15, 45 };
             var primes = new[] { 3, 5 };
 
-            CalculateServices calculateServices = new CalculateServices();
-
             // Act
             var result = calculateServices.GetPrimeNumbers(dividers);
 
@@ -63,8 +64,6 @@ namespace TestProject
             var dividers = new[] { 1, 3, 5, 9, 15, 45 };
             var primes = new[] { 2, 3, 5 };
 
-            CalculateServices calculateServices = new CalculateServices();
-
             // Act
             var result = calculateServices.GetPrimeNumbers(dividers);
 
@@ -77,8 +76,6 @@ namespace TestProject
         {
             // Arrange
             var dividers = new[] { 9, 45 };
-
-            CalculateServices calculateServices = new CalculateServices();
 
             // Act
             var result = calculateServices.GetPrimeNumbers(dividers);
