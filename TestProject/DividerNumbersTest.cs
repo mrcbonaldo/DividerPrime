@@ -34,9 +34,9 @@ namespace TestProject
         {
             // Arrange
             var dividersMock = new List<int>() { 3, 5, 9, 15, 45 };
+            var number = 45;
 
             // Act
-            var number = 45;
             var result = calculateServices.GetDividerNumbers(number);
 
             // Assert
