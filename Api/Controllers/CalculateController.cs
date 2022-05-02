@@ -23,13 +23,13 @@ namespace Api.Controllers
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
-        [HttpGet("dividers")]
-        public IActionResult GetDividers(Number number)
+        [HttpGet("dividers/{number}")]
+        public IActionResult GetDividers(int number)
         {
-            if (number.Value <= 0)
+            if (number <= 0)
                 return StatusCode(StatusCodes.Status400BadRequest, "Favor informar um número maior que 0");
 
-            var dividers = _calculateServices.GetDividerNumbers(number.Value);
+            var dividers = _calculateServices.GetDividerNumbers(number);
 
             return Ok($"{EntityConstants.ResultDividerNumbers} {string.Join(" ", dividers)}");
         }
@@ -39,7 +39,7 @@ namespace Api.Controllers
         /// </summary>
         /// <param name="numbers"></param>
         /// <returns></returns>
-        [HttpGet("primes")]
+        [HttpPost("primes")]
         public IActionResult GetPrimeNumbers(ArrayNumber numbers)
         {
             var primes = _calculateServices.GetPrimeNumbers(numbers.Values);
